@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zac's Data Dashboard</title>
+    <style>
+        body {
+            background-color: #1e1e1e;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 90%;
+            margin: auto;
+            padding-top: 50px;
+        }
+        .header {
+            text-align: center;
+            padding: 20px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 3em;
+        }
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 30px;
+        }
+        .stat {
+            background-color: #333;
+            border-radius: 10px;
+            padding: 20px;
+            width: 30%;
+            text-align: center;
+        }
+        .stat h2 {
+            margin: 0;
+            font-size: 2em;
+        }
+        .dashboard {
+            margin-top: 50px;
+            text-align: center;
+        }
+        iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+        }
+        .chart-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Zac's Data Dashboard</h1>
+            <p>Welcome to the RPG-themed data dashboard, where analytics meets adventure!</p>
+        </div>
+        <div class="stats">
+            <div class="stat">
+                <h2>Data Analysis</h2>
+                <p>Level: 10</p>
+                <p>Experience: 1500 XP</p>
+            </div>
+            <div class="stat">
+                <h2>Visualization</h2>
+                <p>Level: 8</p>
+                <p>Experience: 1200 XP</p>
+            </div>
+            <div class="stat">
+                <h2>Reporting</h2>
+                <p>Level: 9</p>
+                <p>Experience: 1350 XP</p>
+            </div>
+        </div>
+        <div class="dashboard">
+            <h2>Embedded Dashboards</h2>
+            <div class="chart-container">
+                <iframe id="chartFrame" src="your-first-chart-url.html"></iframe>
+            </div>
+            <!-- Add more iframes as needed -->
+        </div>
+    </div>
+    <script>
+        const chartUrls = [
+            'url-to-your-first-chart.html',
+            'url-to-your-second-chart.html',
+            'url-to-your-third-chart.html'
+        ];
+        let currentChartIndex = 0;
+
+        function showNextChart() {
+       
