@@ -91,18 +91,24 @@
         <div class="dashboard">
             <h2>Embedded Dashboards</h2>
             <div class="chart-container">
-                <iframe id="chartFrame" src="your-first-chart-url.html"></iframe>
+                <iframe id="chartFrame" src="https://radiotrash.github.io/ProductLifeCycle/interactive_chart.html"></iframe>
             </div>
             <!-- Add more iframes as needed -->
         </div>
     </div>
     <script>
         const chartUrls = [
-            'url-to-your-first-chart.html',
-            'url-to-your-second-chart.html',
-            'url-to-your-third-chart.html'
+            'https://radiotrash.github.io/ProductLifeCycle/interactive_chart.html',
+            'https://radiotrash.github.io/ProductLifeCycle/another_chart.html', // Add more chart URLs as needed
         ];
         let currentChartIndex = 0;
 
         function showNextChart() {
-       
+            currentChartIndex = (currentChartIndex + 1) % chartUrls.length;
+            document.getElementById('chartFrame').src = chartUrls[currentChartIndex];
+        }
+
+        setInterval(showNextChart, 10000); // Change chart every 10 seconds
+    </script>
+</body>
+</html>
