@@ -1,0 +1,74 @@
+import React, { useState } from 'react';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+
+const monthlyData = [
+  { name: 'Jan', TYUnits: 1753, LYUnits: 2151, TYSales: 101293, LYSales: 116659 },
+  { name: 'Feb', TYUnits: 2010, LYUnits: 2044, TYSales: 116391, LYSales: 114781 },
+  { name: 'Mar', TYUnits: 2179, LYUnits: 3081, TYSales: 125576, LYSales: 179537 },
+  { name: 'Apr', TYUnits: 2616, LYUnits: 2679, TYSales: 147061, LYSales: 155140 },
+  { name: 'May', TYUnits: 2884, LYUnits: 2962, TYSales: 164834, LYSales: 169868 },
+  { name: 'Jun', TYUnits: 2673, LYUnits: 2662, TYSales: 150350, LYSales: 153064 },
+];
+
+const formatCurrency = (value) => {
+  return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(value);
+};
+
+const formatNumber = (value) => {
+  return new Intl.NumberFormat('en-US').format(value);
+};
+
+const DistributorDashboard = () => {
+  const [showSales, setShowSales] = useState(false);
+
+  const getTooltipFormatter = (isSales) => (value, name, props) => {
+    if (name.includes('TY') || name.includes('LY')) {
+      return [isSales ? formatCurrency(value) : formatNumber(value), name.includes('TY') ? 'This Year' : 'Last Year'];
+    }
+    return [value, name];
+  };
+
+  return (
+    <div className="p-4">
+      <h1 className="text-2xl font-bold mb-4">Distributor Overview Dashboard</h1>
+      
+      <div className="mb-4">
+        <button 
+          className={`mr-2 px-3 py-1 rounded ${!showSales ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+          onClick={() => setShowSales(false)}
+        >
+          Units Sold
+        </button>
+        <button 
+          className={`px-3 py-1 rounded ${showSales ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+          onClick={() => setShowSales(true)}
+        >
+          Net Sales
+        </button>
+      </div>
+
+      <div style={{ width: '100%', height: 400 }}>
+        <ResponsiveContainer>
+          <BarChart data={monthlyData}>
+            <XAxis dataKey="name" />
+            <YAxis />
+            <Tooltip formatter={getTooltipFormatter(showSales)} />
+            <Legend />
+            <Bar 
+              dataKey={showSales ? "TYSales" : "TYUnits"} 
+              fill="#8884d8" 
+              name="This Year" 
+            />
+            <Bar 
+              dataKey={showSales ? "LYSales" : "LYUnits"} 
+              fill="#82ca9d" 
+              name="Last Year" 
+            />
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
+    </div>
+  );
+};
+
+export default DistributorDashboard;
